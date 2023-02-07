@@ -11,15 +11,34 @@ public class ArabicToRomanConverter
     public string Convert(int number)
     {
         string result = string.Empty;
-        int nextSmallerNumber = romanNumbers.Keys.Where(n => n <= number).Max();
-        int nextGreaterNumber = romanNumbers.Keys.Where(n => n == number + nextSmallerNumber).FirstOrDefault();
-        
-        if (nextSmallerNumber != number && (nextGreaterNumber - nextSmallerNumber == number))
-            return romanNumbers[nextSmallerNumber] + romanNumbers[nextGreaterNumber];
 
-        for (int i = number; i > 0; i -= nextSmallerNumber)
-            result += romanNumbers[nextSmallerNumber];
+        if (number == GetNumber(number))
+        {
+            return romanNumbers[number];
+        }
+
+        if (number <= GetSmallerNumber(number) * 3)
+        {
+            result = Convert(GetSmallerNumber(number)) + Convert(number - GetSmallerNumber(number));
+        }
+        else if (number == GetSmallerNumber(number) * 4)
+        {
+            result = Convert(GetSmallerNumber(number)) + Convert(GetGreaterNumber(number));
+        }
+        else
+        {
+            result = Convert(GetSmallerNumber(number)) + Convert(GetSmallerNumber(GetSmallerNumber(number)));
+        }
 
         return result;
     }
+
+    private int GetNumber(int number)
+        => romanNumbers.Keys.Where(n => n == number).FirstOrDefault();
+
+    private int GetSmallerNumber(int number)
+        => romanNumbers.Keys.Where(n => n < number).LastOrDefault();
+
+    private int GetGreaterNumber(int number)
+        => romanNumbers.Keys.Where(n => n > number).FirstOrDefault();
 }
