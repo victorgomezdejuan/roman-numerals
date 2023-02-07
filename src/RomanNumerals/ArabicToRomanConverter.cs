@@ -17,17 +17,13 @@ public class ArabicToRomanConverter
             return romanNumbers[number];
         }
 
-        if (number <= GetSmallerNumber(number) * 3)
-        {
-            result = Convert(GetSmallerNumber(number)) + Convert(number - GetSmallerNumber(number));
-        }
-        else if (number == GetSmallerNumber(number) * 4)
+        if (number == GetSmallerNumber(number) * 4)
         {
             result = Convert(GetSmallerNumber(number)) + Convert(GetGreaterNumber(number));
         }
         else
         {
-            result = Convert(GetSmallerNumber(number)) + Convert(GetSmallerNumber(GetSmallerNumber(number)));
+            result = Convert(GetSmallerNumber(number)) + Convert(number - GetSmallerNumber(number));
         }
 
         return result;
