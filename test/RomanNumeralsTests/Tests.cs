@@ -13,7 +13,7 @@ public class Tests
         AssertConvertion(2, "II");
         AssertConvertion(3, "III");
         AssertConvertion(4, "IV");
-        //AssertConvertion(6, "VI");
+        AssertConvertion(6, "VI");
     }
 
     private static void AssertConvertion(int Number, string Expected)
