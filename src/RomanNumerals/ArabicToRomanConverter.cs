@@ -9,6 +9,12 @@ public class ArabicToRomanConverter
 
     public string Convert(int number)
     {
-        return romanNumbers[number];
+        string result = string.Empty;
+        int nextSmallerNumber = romanNumbers.Keys.Where(n => n <= number).Max();
+        
+        for(int i = number; i > 0; i -= nextSmallerNumber)
+            result += romanNumbers[nextSmallerNumber];
+
+        return result;
     }
 }
