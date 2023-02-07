@@ -6,7 +6,8 @@ public class ArabicToRomanConverter
         [1] = "I",
         [5] = "V",
         [10] = "X",
-        [50] = "V"
+        [50] = "V",
+        [100] = "C"
     };
 
     public string Convert(int number)

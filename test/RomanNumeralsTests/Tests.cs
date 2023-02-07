@@ -25,6 +25,7 @@ public class Tests
         AssertConvertion(16, "XVI");
         AssertConvertion(20, "XX");
         AssertConvertion(50, "V");
+        AssertConvertion(100, "C");
     }
 
     private static void AssertConvertion(int Number, string Expected)
