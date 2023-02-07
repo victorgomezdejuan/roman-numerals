@@ -15,8 +15,16 @@ public class Tests
         AssertConvertion(6, "VI");
         AssertConvertion(7, "VII");
         AssertConvertion(8, "VIII");
-        AssertConvertion(10, "X");
         AssertConvertion(9, "IX");
+        AssertConvertion(10, "X");
+        AssertConvertion(11, "XI");
+        AssertConvertion(12, "XII");
+        AssertConvertion(13, "XIII");
+        AssertConvertion(14, "XIV");
+        AssertConvertion(15, "XV");
+        AssertConvertion(16, "XVI");
+        AssertConvertion(20, "XX");
+        AssertConvertion(50, "V");
     }
 
     private static void AssertConvertion(int Number, string Expected)
