@@ -5,10 +5,17 @@ namespace RomanNumeralsTests;
 public class Tests
 {
     [Fact]
-    public void ConvertFromArabicToRoman()
+    public void Convert1FromArabicToRoman()
     {
-        string romanNumber = ArabicToRomanConverter.Convert(1);
+        AssertConvertion(1, "I");
+        AssertConvertion(5, "V");
+        AssertConvertion(10, "X");
+    }
 
-        Assert.Equal("I", romanNumber);
+    private static void AssertConvertion(int Number, string Expected)
+    {
+        ArabicToRomanConverter converter = new();
+        string romanNumber = converter.Convert(Number);
+        Assert.Equal(Expected, romanNumber);
     }
 }

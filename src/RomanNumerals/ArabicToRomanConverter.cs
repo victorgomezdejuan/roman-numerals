@@ -1,8 +1,14 @@
 ﻿namespace RomanNumerals;
 public class ArabicToRomanConverter
 {
-    public static string Convert(int number)
+    private Dictionary<int, string> romanNumbers = new() {
+        [1] = "I",
+        [5] = "V",
+        [10] = "X"
+    };
+
+    public string Convert(int number)
     {
-        return "I";
+        return romanNumbers[number];
     }
 }
