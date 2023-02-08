@@ -34,6 +34,7 @@ public class Tests
         AssertConvertion(500, "D");
         AssertConvertion(700, "DCC");
         AssertConvertion(1000, "M");
+        AssertConvertion(2019, "MMXIX");
     }
 
     private static void AssertConvertion(int Number, string Expected)
