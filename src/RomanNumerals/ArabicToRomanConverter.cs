@@ -14,30 +14,54 @@ public class ArabicToRomanConverter
 
     public string Convert(int number)
     {
+        if (number <= 0)
+            return string.Empty;
         if (number == GetNumber(number))
             return romanNumbers[number];
 
-        string result = string.Empty;
+        return ConvertComplex(number);
+    }
 
-        if (number == GetSmallerNumber(number) * 4)
-            result = Convert(GetSmallerNumber(number)) + Convert(GetGreaterNumber(number));
-        else if (number == GetSecondSmallerNumber(number) * 9)
-            result = Convert(GetSecondSmallerNumber(number)) + Convert(GetGreaterNumber(number));
+    private string ConvertComplex(int number)
+    {
+        if (Base5SymbolShouldBeSubstracted(number))
+            return ConvertSubstracted(number, false);
+        else if (Base1SymbolShouldBeSubstracted(number))
+            return ConvertSubstracted(number, true);
         else
-            result = Convert(GetSmallerNumber(number)) + Convert(number - GetSmallerNumber(number));
+            return ConvertRepeated(number);
+    }
 
-        return result;
+    private string ConvertSubstracted(int number, bool IsBase1)
+    {
+        int smaller = IsBase1 ? GetBase1Smaller(number) : GetBase5Smaller(number);
+        int greater = GetGreater(number);
+        int rest = number - (greater - smaller);
+
+        return Convert(smaller) + Convert(greater) + Convert(rest);
+    }
+
+    private string ConvertRepeated(int number)
+    {
+        int smaller = GetBase5Smaller(number);
+        return Convert(smaller) + Convert(number - smaller);
     }
 
     private int GetNumber(int number)
         => romanNumbers.Keys.Where(n => n == number).FirstOrDefault();
 
-    private int GetSecondSmallerNumber(int number)
-        => GetSmallerNumber(GetSmallerNumber(number));
+    private int GetBase1Smaller(int number)
+        => GetBase5Smaller(GetBase5Smaller(number));
 
-    private int GetSmallerNumber(int number)
+    private int GetBase5Smaller(int number)
         => romanNumbers.Keys.Where(n => n < number).LastOrDefault();
 
-    private int GetGreaterNumber(int number)
+    private int GetGreater(int number)
         => romanNumbers.Keys.Where(n => n > number).FirstOrDefault();
+
+    private bool Base5SymbolShouldBeSubstracted(int number)
+        => GetBase5Smaller(number) > 0 && number >= GetBase5Smaller(number) * 4;
+
+    private bool Base1SymbolShouldBeSubstracted(int number)
+        => GetBase1Smaller(number) > 0 && number >= GetBase1Smaller(number) * 9;
 }

@@ -24,9 +24,15 @@ public class Tests
         AssertConvertion(15, "XV");
         AssertConvertion(16, "XVI");
         AssertConvertion(20, "XX");
+        AssertConvertion(29, "XXIX");
+        AssertConvertion(40, "XL");
         AssertConvertion(50, "L");
+        AssertConvertion(80, "LXXX");
+        AssertConvertion(94, "XCIV");
         AssertConvertion(100, "C");
+        AssertConvertion(294, "CCXCIV");
         AssertConvertion(500, "D");
+        AssertConvertion(700, "DCC");
         AssertConvertion(1000, "M");
     }
 
